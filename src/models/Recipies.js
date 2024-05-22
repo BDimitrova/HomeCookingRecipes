@@ -1,36 +1,33 @@
 const mongoose = require('mongoose');
 
 let recipiesSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         required: true,
         minLength: 2,
+        maxLength: 50
     },
-    species: {
+    ingredients: {
         type: String,
         required: true,
-        minLength: 3,
+        minLength: 10,
+        maxLength: 200
     },
-    skinColor: {
+    instructions: {
         type: String,
         required: true,
-        minLength: 3,
+        minLength: 10,
     },
-    eyeColor: {
+    description: {
         type: String,
         required: true,
-        minLength: 3,
+        minLength: 10,
+        maxLength: 100
     },
     image: {
         type: String,
         required: true,
         validate: /^https?:\/\//i
-    },
-    description: {
-        type: String,
-        required: true,
-        minLength: 3,
-        maxLength: 500,
     },
     owner: {
         type: mongoose.Types.ObjectId,
@@ -49,6 +46,6 @@ recipiesSchema.method('getRecommend', function () {
     return this.recommend.map(x => x._id);
 })
 
-let Recipies = mongoose.model('Creatures', recipiesSchema);
+let Recipies = mongoose.model('Recipes', recipiesSchema);
 
 module.exports = Recipies;
