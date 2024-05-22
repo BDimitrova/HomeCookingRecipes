@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const recipesServices = require('../services/recipesServices');
 
-    res.render('home');
 router.get('/', async (req, res) => {
     let recipes = await recipesServices.findTheThree();
     recipes = recipes.slice(0, 3);
